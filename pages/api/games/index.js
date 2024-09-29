@@ -27,7 +27,7 @@ export default async function handler(req, res) {
       }
 
       try {
-        const { title, genre, publisher, developer, rating } = fields;
+        const { title, genre, publisher, developer, rating,picture: imageUrl} = fields;
 
         // Create new game document
         const game = await Game.create({
@@ -36,11 +36,12 @@ export default async function handler(req, res) {
           publisher: publisher[0],
           developer: developer[0],
           rating: Number(rating[0]),
+          imageUrl: imageUrl[0],
         });
 
         res.status(201).json({ success: true, data: game });
       } catch (error) {
-        console.error(error);
+        console.error('error creating game',error);
         res.status(400).json({ success: false, error: 'Error creating game' });
       }
     });

@@ -27,7 +27,11 @@ export default function Games() {
       } finally {
         setIsLoading(false);
       }
+      const res = await fetch('/api/games');
+      const { data } = await res.json();
+      console.log(data); // Log the games data to check its structure
     };
+    
     fetchGames();
   }, []);
 
@@ -62,24 +66,31 @@ export default function Games() {
         <p>No games found.</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {games.map((game) => (
-            <div key={game._id} className="border p-4 rounded-md">
-              <h2 className="text-xl font-semibold">{game.title}</h2>
-              <p className="text-gray-600">{game.genre}</p>
-              <p className="text-gray-600">{game.publisher?.name || 'Unknown Publisher'}</p>
-              <p className="text-gray-600">{game.developer?.name || 'Unknown Developer'}</p>
-              <p className="text-gray-600">Rating: {game.rating}/5</p> 
-              <button
-                onClick={() => handleDelete(game._id)}
-                className="bg-red-500 text-white px-4 py-2 rounded-md mt-4"
-              >
-                Delete Game
-              </button>
-              
-            </div>
-          ))}
-        </div>
+  {games.map((game) => (
+    <div key={game._id} className="border p-4 rounded-md">
+      {/* Display the game image */}
+      {game.imageUrl && (
+        <img
+          src={game.imageUrl}
+          alt={game.title}
+          className="w-full h-48 object-cover mb-4" // Adjust as needed for styling
+        />
       )}
+      <h2 className="text-xl font-semibold">{game.title}</h2>
+      <p className="text-gray-600">{game.genre}</p>
+      <p className="text-gray-600">{game.publisher?.name || 'Unknown Publisher'}</p>
+      <p className="text-gray-600">{game.developer?.name || 'Unknown Developer'}</p>
+      <p className="text-gray-600">Rating: {game.rating}/5</p>
+      <button
+        onClick={() => handleDelete(game._id)}
+        className="bg-red-500 text-white px-4 py-2 rounded-md mt-4"
+      >
+        Delete Game
+      </button>
+    </div>
+  ))}
+</div>
+)}
     </div>
   );
 }

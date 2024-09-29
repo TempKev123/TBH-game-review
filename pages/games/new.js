@@ -6,6 +6,7 @@ const genres = ['Action', 'Adventure', 'RPG', 'Strategy', 'Sports', 'Simulation'
 export default function NewGame() {
   const [formData, setFormData] = useState({
     title: '',
+    picture:'',
     genre: '',
     publisher: '',
     developer: '', // Add developer field
@@ -52,9 +53,9 @@ export default function NewGame() {
     formDataToSend.append('genre', formData.genre);
     formDataToSend.append('publisher', formData.publisher);
     formDataToSend.append('developer', formData.developer); // Add developer field
-    formDataToSend.append('rating', formData.rating);  // Ensure this is set correctly
+    formDataToSend.append('rating', formData.rating);
+    formDataToSend.append('picture', formData.imageUrl); 
     console.log('FormData Rating:', formData.rating); // Log the rating field here
-
     const res = await fetch('/api/games', {
       method: 'POST',
       body: formDataToSend,
@@ -69,7 +70,7 @@ export default function NewGame() {
 
   return (
     <div className="container mx-auto px-4">
-      <h1 className="text-4xl font-bold my-8">Add New Gaaaaaaaaaaaaaaaame</h1>
+      <h1 className="text-4xl font-bold my-8">Add New Game</h1>
       <form onSubmit={handleSubmit} className="max-w-lg">
         <div className="mb-4">
           <label htmlFor="title" className="block mb-2">Title</label>
@@ -83,7 +84,17 @@ export default function NewGame() {
             className="w-full px-3 py-2 border rounded-md"
           />
         </div>
-
+        <div className="mb-auto">
+          <label htmlFor="imageUrl" className="block mb-2">imageUrl</label>
+          <input
+            type="text"
+            id="imageUrl"
+            name="imageUrl"
+            value={formData.imageUrl}
+            onChange={handleChange}
+            className="w-full px-3 py-2 border rounded-md"
+          />
+        </div>
 
 
         <div className="mb-4">
