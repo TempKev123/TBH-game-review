@@ -48,5 +48,5 @@ export default function GameDetails() {
         </Link>
         <div>
       </div>
-    </div></div>)}
-
+    </div></div>
+)}

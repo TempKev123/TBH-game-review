@@ -95,8 +95,8 @@ export default function Games() {
               >
                 Delete Game
               </button>
-              <div>
-            </div></div>
+              
+            </div>
           ))}
         </div>
       )}
