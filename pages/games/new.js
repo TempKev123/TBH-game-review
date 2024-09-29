@@ -11,10 +11,8 @@ export default function NewGame() {
     developer: '', // Add developer field
     rating: '',
   });
-  const [image, setImage] = useState(null);
   const [publishers, setPublishers] = useState([]);
   const [developers, setDevelopers] = useState([]); // Store developers
-  const [previewUrl, setPreviewUrl] = useState('');
   const router = useRouter();
 
   // Fetch publishers
@@ -45,11 +43,7 @@ export default function NewGame() {
     }));
   };
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setImage(file);
-    setPreviewUrl(URL.createObjectURL(file));
-  };
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -59,7 +53,6 @@ export default function NewGame() {
     formDataToSend.append('publisher', formData.publisher);
     formDataToSend.append('developer', formData.developer); // Add developer field
     formDataToSend.append('rating', formData.rating);  // Ensure this is set correctly
-    formDataToSend.append('image', image);
     console.log('FormData Rating:', formData.rating); // Log the rating field here
 
     const res = await fetch('/api/games', {
@@ -91,21 +84,7 @@ export default function NewGame() {
           />
         </div>
 
-        <div className="mb-4">
-          <label htmlFor="image" className="block mb-2">Image</label>
-          <input
-            type="file"
-            id="image"
-            name="image"
-            onChange={handleImageChange}
-            accept="image/*"
-            required
-            className="w-full px-3 py-2 border rounded-md"
-          />
-          {previewUrl && (
-            <img src={previewUrl} alt="Preview" className="mt-2 w-full max-h-48 object-cover" />
-          )}
-        </div>
+
 
         <div className="mb-4">
           <label htmlFor="genre" className="block mb-2">Genre</label>

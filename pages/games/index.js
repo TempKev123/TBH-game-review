@@ -3,11 +3,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
-const ImageFallback = ({ alt }) => (
-  <div className="w-full h-full flex items-center justify-center bg-gray-300 text-gray-600">
-    {alt || 'No Image'}
-  </div>
-);
+
 
 export default function Games() {
   const [games, setGames] = useState([]);
@@ -68,22 +64,6 @@ export default function Games() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {games.map((game) => (
             <div key={game._id} className="border p-4 rounded-md">
-              <div className="relative w-full h-48 mb-2">
-                {game.imageUrl ? (
-                  <Image
-                    src={game.imageUrl}
-                    alt={game.title}
-                    layout="fill"
-                    objectFit="cover"
-                    onError={(e) => {
-                      e.target.onError = null;
-                      e.target.style.display = 'none';
-                      e.target.nextSibling.style.display = 'flex';
-                    }}
-                  />
-                ) : null}
-                <ImageFallback alt={game.title} />
-              </div>
               <h2 className="text-xl font-semibold">{game.title}</h2>
               <p className="text-gray-600">{game.genre}</p>
               <p className="text-gray-600">{game.publisher?.name || 'Unknown Publisher'}</p>
