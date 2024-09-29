@@ -26,7 +26,7 @@ export default function GameDetails() {
     if (res.ok) {
       router.push('/games');
     }
-  }};
+  };
 
   if (!game) return <div>Loading...</div>;
 
@@ -48,5 +48,5 @@ export default function GameDetails() {
         </Link>
         <div>
       </div>
-    </div></div>)
+    </div></div>)}
 
