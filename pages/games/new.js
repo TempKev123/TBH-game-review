@@ -69,7 +69,7 @@ export default function NewGame() {
 
   return (
     <div className="container mx-auto px-4">
-      <h1 className="text-4xl font-bold my-8">Add New Game</h1>
+      <h1 className="text-4xl font-bold my-8">Add New Gaaaaaaaaaaaaaaaame</h1>
       <form onSubmit={handleSubmit} className="max-w-lg">
         <div className="mb-4">
           <label htmlFor="title" className="block mb-2">Title</label>
