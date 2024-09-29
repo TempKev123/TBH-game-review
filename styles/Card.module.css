@@ -1,0 +1,74 @@
+/* styles/Card.module.css */
+
+.cardWrapper {
+  width: 250px; /* Smaller width for the card */
+  margin: 20px;
+  border: 2px solid #444; /* Box around the entire card */
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.3s ease, height 0.3s ease;
+  background-color: rgba(0, 0, 0, 0.7);
+  position: relative;
+  height: 250px; /* Default height */
+}
+
+.cardWrapper:hover {
+  transform: scale(1.05); /* Slight zoom on hover */
+  height: 350px; /* Expand height on hover to show details */
+}
+
+.card {
+  background-color: #222;
+  color: #fff;
+  padding: 15px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  height: 100%; /* Full height of the wrapper */
+}
+
+.cardImage {
+  width: 100%;
+  height: 150px; /* Reduced height */
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.cardContent {
+  margin-top: 10px;
+}
+
+.title {
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.overlay {
+  display: none; /* Hidden by default */
+}
+
+.cardWrapper:hover .overlay {
+  display: block; /* Show overlay on hover */
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7); /* Dark overlay */
+  color: #fff;
+  padding: 15px;
+  box-sizing: border-box;
+  text-align: left; /* Align text to the left */
+  border-top: 1px solid #444; /* Border separating the image from the details */
+}
+
+.additionalInfo {
+  margin-top: 10px;
+}
+
+.additionalInfo p {
+  font-size: 0.9rem;
+  margin: 5px 0;
+}

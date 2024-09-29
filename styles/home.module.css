@@ -1,0 +1,46 @@
+.container {
+  background-color: #000; /* Black background */
+  color: #fff; /* White text color */
+  height: 100vh; /* Full height of the viewport */
+  display: flex; /* Aligns genre list and game list horizontally */
+}
+
+.mainContent {
+  display: flex; /* Align genre list and game list side by side */
+  width: 100%; /* Full width */
+  height: 100vh; /* Full viewport height to prevent parent scrolling */
+  overflow: hidden;
+}
+
+.genreListContainer {
+  height: 100vh; /* Full height of the viewport */
+  width: 210px;
+  overflow-y: auto;
+  margin-right: 20px; /* Space between genre list and game list */
+  background-color: #222; /* Dark background for genre list */
+  flex-shrink: 0; /* Prevents shrinking */
+
+  
+}
+
+.gameList {
+  flex: 1; /* Take the remaining space for the game list */
+  height: 100vh; /* Full height of the viewport */
+  overflow-y: auto; /* Allows scrolling within the game list */
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 cards per row */
+  gap: 20px; /* Space between cards */
+  background-color: #111; /* Dark background for game list */
+  padding: 20px; /* Padding inside the game list container */
+  flex-wrap: wrap;
+}
+
+.navbar {
+  position: sticky; /* Sticks the navbar to the top */
+  top: 0; /* Ensure it's at the top */
+  width: 100%; /* Full width */
+  background-color: #111; /* Background color of the navbar */
+  z-index: 100; /* Ensures it stays above other content */
+  padding: 10px 20px; /* Padding around the navbar */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Optional: adds a shadow to the navbar */
+}

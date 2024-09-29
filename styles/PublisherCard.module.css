@@ -1,0 +1,81 @@
+/* PublisherCard.module.css */
+.card {
+  position: relative;
+  width: 250px;
+  height: 300px;
+  border: 1px solid #333;
+  border-radius: 8px;
+  overflow: hidden;
+  margin: 10px;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  background-color: #000;
+  color: #fff;
+}
+
+.card.expanded {
+  height: 380px;
+}
+
+.image {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+}
+
+.details {
+  padding: 15px;
+  height: calc(100% - 150px);
+  display: flex;
+  flex-direction: column;
+}
+
+.name {
+  margin: 0 0 10px 0;
+  font-size: 1.2em;
+  color: #fff;
+}
+
+.popularItem {
+  margin: 0 0 10px 0;
+  font-size: 0.9em;
+  color: #ccc;
+  display: flex;
+  align-items: center;
+}
+
+.expandedDetails {
+  margin-top: 10px;
+}
+
+.expandedDetails ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.expandedDetails li {
+  margin-bottom: 5px;
+  font-size: 0.9em;
+  color: #ccc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.gameName {
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.gameCount {
+  margin-left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  margin-right: 5px;
+}
