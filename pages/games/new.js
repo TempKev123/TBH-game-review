@@ -103,7 +103,7 @@ export default function NewGame() {
             className="w-full px-3 py-2 border rounded-md"
           />
           {previewUrl && (
-            <image src={previewUrl} alt="Preview" className="mt-2 w-full max-h-48 object-cover" />
+            <img src={previewUrl} alt="Preview" className="mt-2 w-full max-h-48 object-cover" />
           )}
         </div>
 
@@ -182,3 +182,4 @@ export default function NewGame() {
     </div>
   );
 }
+
