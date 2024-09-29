@@ -2,25 +2,20 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 
-export default function EditPublisher() {
+export default function EditDeveloper() {
   const [formData, setFormData] = useState({
     name: '',
     foundedDate: '',
     headquarters: '',
     description: '',
   });
-  const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
   const { id } = router.query;
 
   useEffect(() => {
     if (id) {
-      const fetchPublisher = async () => {
-        const res = await fetch(`/api/publishers/${id}`);
-        if (!res.ok) {
-          console.error("Failed to fetch publisher data.");
-          return;
-        }
+      const fetchDeveloper = async () => {
+        const res = await fetch(`/api/developers/${id}`);
         const { data } = await res.json();
         setFormData({
           name: data.name,
@@ -28,9 +23,8 @@ export default function EditPublisher() {
           headquarters: data.headquarters,
           description: data.description,
         });
-        setIsLoading(false);
       };
-      fetchPublisher();
+      fetchDeveloper();
     }
   }, [id]);
 
@@ -44,7 +38,7 @@ export default function EditPublisher() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch(`/api/publishers/${id}`, {
+    const res = await fetch(`/api/developers/${id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -53,17 +47,13 @@ export default function EditPublisher() {
     });
 
     if (res.ok) {
-      router.push(`/publishers/${id}`);
-    } else {
-      console.error("Failed to update publisher.");
+      router.push(`/developers/${id}`);
     }
   };
 
-  if (isLoading) return <p>Loading...</p>;
-
   return (
     <div className="container mx-auto px-4">
-      <h1 className="text-4xl font-bold my-8">Edit Publisher</h1>
+      <h1 className="text-4xl font-bold my-8">Edit Developer</h1>
       <form onSubmit={handleSubmit} className="max-w-lg">
         <div className="mb-4">
           <label htmlFor="name" className="block mb-2">Name</label>
@@ -113,7 +103,7 @@ export default function EditPublisher() {
           ></textarea>
         </div>
         <button type="submit" className="bg-blue-500 text-white px-4 py-2 rounded-md">
-          Update Publisher
+          Update Developer
         </button>
       </form>
     </div>

@@ -1,30 +1,18 @@
-// File: pages/developers/[id].js
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
 export default function DeveloperDetails() {
   const [developer, setDeveloper] = useState(null);
-  const [error, setError] = useState(null); // Added error state
-  const [loading, setLoading] = useState(true); // Added loading state
   const router = useRouter();
   const { id } = router.query;
 
   useEffect(() => {
     if (id) {
       const fetchDeveloper = async () => {
-        try {
-          const res = await fetch(`/api/developers/${id}`);
-          if (!res.ok) {
-            throw new Error('Failed to fetch developer details');
-          }
-          const { data } = await res.json();
-          setDeveloper(data);
-        } catch (err) {
-          setError(err.message);
-        } finally {
-          setLoading(false); // Set loading to false after fetching
-        }
+        const res = await fetch(`/api/developers/${id}`);
+        const { data } = await res.json();
+        setDeveloper(data);
       };
       fetchDeveloper();
     }
@@ -37,9 +25,7 @@ export default function DeveloperDetails() {
     }
   };
 
-  if (loading) return <div>Loading...</div>; // Loading state message
-  if (error) return <div>Error: {error}</div>; // Error message
-  if (!developer) return <div>No developer found.</div>; // Empty state message
+  if (!developer) return <div>Loading...</div>;
 
   return (
     <div className="container mx-auto px-4">
@@ -47,12 +33,9 @@ export default function DeveloperDetails() {
       <p><strong>Founded:</strong> {new Date(developer.foundedDate).toLocaleDateString()}</p>
       <p><strong>Headquarters:</strong> {developer.headquarters}</p>
       <p><strong>Description:</strong> {developer.description}</p>
-      <button onClick={handleDelete} className="bg-red-500 text-white py-2 px-4 mt-4">
-        Delete
-      </button>
       <div className="mt-4">
-        <Link href={`/developers/edit/${id}`}>
-          <a className="bg-yellow-500 text-white px-4 py-2 rounded-md mr-2">Edit</a>
+        <Link href={`/developers/edit/${id}`} className="bg-yellow-500 text-white px-4 py-2 rounded-md mr-2">
+          Edit
         </Link>
         <button onClick={handleDelete} className="bg-red-500 text-white px-4 py-2 rounded-md">Delete</button>
       </div>
