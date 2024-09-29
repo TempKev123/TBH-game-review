@@ -1,4 +1,4 @@
-# THB Game Reviews
+# TBH Game Reviews
 
 # Team Members
 - [Sujit Dityam](https://github.com/TempKev123)
